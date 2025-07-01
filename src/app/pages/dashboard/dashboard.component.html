@@ -1,0 +1,43 @@
+<div class="dashboard container py-4">
+
+  <!-- Create New Dropdown -->
+  <div class="text-end mb-4">
+    <div class="dropdown">
+      <button class="btn btn-primary bgd-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-plus-circle me-1"></i> Create New
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Forms</a></li>
+        <li><a class="dropdown-item" href="#">Polls</a></li>
+        <li><a class="dropdown-item" href="#">Quizzes</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Recents Section -->
+  <span class="section-title mb-3 d-block">Recents:</span>
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
+    <div class="col" *ngFor="let item of recents">
+      <div class="card recent-card h-100 text-center">
+        <i [class]="item.icon + ' icon mb-2'"></i>
+        <span class="card-label">{{ item.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics Section -->
+  <span class="section-title mb-3 d-block">Analytics:</span>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="card analytics-card h-100 d-flex justify-content-center align-items-center">
+        <i class="bi bi-bar-chart-fill analytics-icon"></i>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card analytics-card h-100 d-flex justify-content-center align-items-center">
+        <i class="bi bi-pie-chart-fill analytics-icon"></i>
+      </div>
+    </div>
+  </div>
+
+</div>

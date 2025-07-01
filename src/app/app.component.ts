@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './shared/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'formiq-frontend';
+  isLoading = false;
+  constructor(private loader: LoaderService) {
+    this.loader.loading$.subscribe(status => {
+      this.isLoading = status;
+    });
+  }
 }

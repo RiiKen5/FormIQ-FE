@@ -1,0 +1,38 @@
+<!-- src/app/pages/poll-create/poll-create.component.html -->
+<div class="container mt-4">
+  <h3>Create a New Poll</h3>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="mb-3">
+    <label>Poll Title</label>
+    <input [(ngModel)]="title" class="form-control" placeholder="e.g. Employee Feedback">
+  </div>
+
+  <div class="mb-3">
+    <label>Topic</label>
+    <input [(ngModel)]="topic" class="form-control" placeholder="e.g. Remote Work">
+  </div>
+
+  <div class="mb-3 d-flex gap-2 align-items-end">
+    <input [(ngModel)]="newQuestion" class="form-control" placeholder="Add manual question">
+    <button class="btn btn-outline-secondary" (click)="addManualQuestion()">Add</button>
+  </div>
+
+  <div class="mb-3">
+    <label>Generate via AI?</label>
+    <div class="d-flex gap-2">
+      <input type="number" class="form-control w-25" [(ngModel)]="aiCount" min="1" max="10">
+      <button class="btn btn-info" (click)="generateAIQuestions()" [disabled]="loading">
+        {{ loading ? 'Generating...' : 'Generate' }}
+      </button>
+    </div>
+  </div>
+
+  <h5>Questions</h5>
+  <ul class="list-group mb-3">
+    <li class="list-group-item" *ngFor="let q of questions">{{ q.text }}</li>
+  </ul>
+
+  <button class="btn btn-success w-100" (click)="createPoll()">Create Poll</button>
+</div>

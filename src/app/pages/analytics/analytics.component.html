@@ -1,0 +1,18 @@
+<!-- src/app/pages/analytics/analytics.component.html -->
+<div class="container mt-4">
+  <h3>Analytics</h3>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Response</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let opt of objectKeys(counts)">
+        <td>{{ opt }}</td>
+        <td>{{ counts[opt] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

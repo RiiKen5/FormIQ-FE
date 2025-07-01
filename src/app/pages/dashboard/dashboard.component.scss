@@ -1,0 +1,82 @@
+.dashboard {
+  font-family: var(--font-family-base);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+  padding-bottom: 3rem;
+  max-width: 100% !important;
+
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: var(--heading-weight);
+    color: var(--text-color);
+  }
+
+  .card-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: inherit;
+  }
+
+  .dropdown-item {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-color);
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+  }
+
+  .recent-card {
+    background: var(--light-gray);
+    border: 1px solid var(--mid-gray);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1rem;
+    text-align: center;
+    transition: all var(--transition-speed);
+    cursor: pointer;
+
+    .icon {
+      font-size: var(--icon-size-lg);
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+      box-shadow: var(--hover-shadow);
+
+      .icon {
+        color: var(--white);
+      }
+    }
+  }
+
+  .analytics-card {
+    background: var(--light-gray);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--transition-speed);
+
+    .analytics-icon {
+      font-size: var(--icon-size-xl);
+      color: var(--success-color);
+    }
+
+    &:hover {
+      background-color: var(--success-color);
+      color: var(--white);
+
+      .analytics-icon {
+        color: var(--white);
+      }
+    }
+  }
+}

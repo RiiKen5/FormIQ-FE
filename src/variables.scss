@@ -1,0 +1,27 @@
+:root {
+  /* Professional Colors */
+  --background-color: #edf2f7;
+  --primary-color: #4f46e5;
+  --success-color: #10b981;
+  --light-gray: #f9fafb;
+  --mid-gray: #e5e7eb;
+  --text-color: #111827;
+  --white: #ffffff;
+
+  /* Typography */
+  --font-family-base: 'Inter', 'Segoe UI', sans-serif;
+  --heading-weight: 600;
+  --body-weight: 400;
+
+  /* Sizing */
+  --card-radius: 1rem;
+  --transition-speed: 0.3s;
+
+  /* Shadows */
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --hover-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+  /* Icons */
+  --icon-size-lg: 2.5rem;
+  --icon-size-xl: 4rem;
+}

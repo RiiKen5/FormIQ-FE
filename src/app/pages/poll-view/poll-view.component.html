@@ -1,0 +1,41 @@
+<div class="container mt-4" *ngIf="poll">
+  <h3 class="mb-3">{{ poll.title }}</h3>
+
+  <div *ngIf="isOwner" class="alert alert-info">
+    You are the creator of this poll. You can't submit responses.
+  </div>
+
+  <form #pollForm="ngForm" *ngIf="!submitted && !isOwner" (ngSubmit)="submit()">
+  <div *ngFor="let q of poll.questions" class="mb-4 p-3 border rounded bg-light">
+    <label class="fw-semibold">{{ q.text }}</label>
+    <div *ngFor="let opt of q.options" class="form-check">
+      <input class="form-check-input"
+             type="radio"
+             [name]="q._id"
+             [value]="opt"
+             [(ngModel)]="answers[q._id]"
+             required>
+      <label class="form-check-label">{{ opt }}</label>
+    </div>
+  </div>
+
+  <button class="btn btn-success w-100" [disabled]="!pollForm.valid">
+    Submit
+  </button>
+</form>
+
+
+  <div *ngIf="submitted" class="alert alert-success mt-3">
+    ✅ Thank you! Your response has been recorded.
+  </div>
+
+  <div *ngIf="isOwner" class="mt-4">
+    <h5>Preview:</h5>
+    <div *ngFor="let q of poll.questions" class="mb-3 border-bottom pb-2">
+      <p class="fw-semibold mb-1">{{ q.text }}</p>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let opt of q.options" class="list-group-item">{{ opt }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
