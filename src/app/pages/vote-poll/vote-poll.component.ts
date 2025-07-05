@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environment/environment';
+import { LoaderService } from '../../shared/loader.service';
 
 @Component({
   selector: 'app-vote-poll',
@@ -13,12 +15,17 @@ export class VotePollComponent implements OnInit {
   selectedIndex: number | null = null;
   slugId: any;
 
-  constructor(private http:HttpClient,private route: ActivatedRoute) {}
+  constructor(private loader:LoaderService,private http:HttpClient,private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.slugId = this.route.snapshot.paramMap.get('id');
-    this.http.get('http://localhost:5000/api/poll/'+this.slugId).subscribe((data: any) => {
+    this.loader.show();
+    this.http.get(`${environment.baseUrl}poll/`+this.slugId).subscribe((data: any) => {
       this.poll = data;
+      this.loader.hide();
+    }, (error: any) => {
+      console.error('Error fetching poll:', error);
+      this.loader.hide();
     });
   }
 
@@ -28,7 +35,7 @@ export class VotePollComponent implements OnInit {
       return;
     }
     if (pollToUpdate) {
-      this.http.post('http://localhost:5000/api/poll/vote',{
+      this.http.post(`${environment.baseUrl}vote`,{
         option: this.selectedIndex,
         pollId: pollToUpdate._id,
       }).subscribe((response: any) => {

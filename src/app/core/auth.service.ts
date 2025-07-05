@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private API_URL = 'http://localhost:5000/api/auth';
+  private API_URL = `${environment.baseUrl}auth`;
   private userSubject = new BehaviorSubject<string | null>(null);
   public user$ = this.userSubject.asObservable();
 

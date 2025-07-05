@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/auth.service';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-poll-view',
@@ -24,7 +25,7 @@ export class PollViewComponent implements OnInit {
 
   ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.http.get(`http://localhost:5000/api/polls/${slug}`).subscribe({
+    this.http.get(`${environment.baseUrl}polls/${slug}`).subscribe({
       next: (res: any) => {
         this.poll = res;
         const userId = this.auth.getUserId(); // make sure AuthService supports this
@@ -47,7 +48,7 @@ export class PollViewComponent implements OnInit {
       }))
     };
 
-    this.http.post(`http://localhost:5000/api/polls/${this.poll.pollId}/response`, payload).subscribe({
+    this.http.post(`${environment.baseUrl}polls/${this.poll.pollId}/response`, payload).subscribe({
       next: () => {
         this.submitted = true;
       }

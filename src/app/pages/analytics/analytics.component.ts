@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-analytics',
@@ -21,7 +22,7 @@ export class AnalyticsComponent implements OnInit {
     this.pollId = this.route.snapshot.paramMap.get('pollId')!;
     this.questionId = this.route.snapshot.paramMap.get('questionId')!;
 
-    this.http.get<any[]>(`http://localhost:5000/api/polls/${this.pollId}/responses`).subscribe(data => {
+    this.http.get<any[]>(`${environment.baseUrl}polls/${this.pollId}/responses`).subscribe(data => {
       this.responses = data;
 
       const answers = data.map(r => r.answers.find((a: any) => a.questionId === this.questionId));

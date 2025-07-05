@@ -13,6 +13,8 @@ import { ModalService } from '../../shared/modal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PollCreateComponent } from '../poll-create/poll-create.component';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environment/environment';
+import { LoaderService } from '../../shared/loader.service';
 
 export interface PollOption {
   _id: string;
@@ -53,11 +55,13 @@ export class ListItemsComponent {
   formItems:Poll[] = [];
   filteredItems:Poll[] = [];
 
-  constructor(private toastr:ToastrService ,private dialog: MatDialog,private modalService:ModalService,private http:HttpClient,private location: Location,private route:ActivatedRoute) {
-    const category=this.route.snapshot.queryParams['category']
-    this.http.get('http://localhost:5000/api/polls/me').subscribe((data: any) => {
+  constructor(private loader:LoaderService,private toastr:ToastrService ,private dialog: MatDialog,private http:HttpClient,private location: Location,private route:ActivatedRoute) {
+    const category=this.route.snapshot.queryParams['category'];
+    this.loader.show();
+    this.http.get('https://formiq-be.onrender.com/api/polls/me').subscribe((data: any) => {
       this.formItems = data;
       this.filteredItems = data;
+      this.loader.hide();
     });
   }
 
@@ -143,7 +147,7 @@ export class ListItemsComponent {
 }
 
 deleteItem(item: any) {
-  this.http.delete(`http://localhost:5000/api/poll/${item?._id}`).subscribe(() => {
+  this.http.delete(`${environment.baseUrl}poll/${item?._id}`).subscribe(() => {
     this.formItems = this.formItems.filter((i: any) => i._id !== item._id);
     this.toastr.success('Poll deleted successfully!');
     this.filterItems();
@@ -154,7 +158,7 @@ deleteItem(item: any) {
 }
 
 duplicateItem(item: any) {
-  this.http.post(`http://localhost:5000/api/poll/${item?._id}/duplicate`,{}).subscribe((data: any) => {
+  this.http.post(`${environment.baseUrl}poll/${item?._id}/duplicate`,{}).subscribe((data: any) => {
     this.formItems.push(data);
     this.toastr.success('Poll duplicated successfully!');
     this.filterItems();

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-poll-create',
@@ -67,14 +68,14 @@ export class PollCreateComponent implements OnInit {
 
     if (this.mode === 'edit' && this.pollId) {
       // Update API call
-      this.http.put(`http://localhost:5000/api/poll/${this.pollId}`, pollPayload).subscribe((data: any) => {
+      this.http.put(`${environment.baseUrl}poll/${this.pollId}`, pollPayload).subscribe((data: any) => {
         console.log('Poll updated:', data);
         this.toast.success('Poll updated successfully!');
         this.dialogRef.close(data);
       });
     } else {
       // Create new poll
-      this.http.post('http://localhost:5000/api/poll', pollPayload).subscribe((data: any) => {
+      this.http.post(`${environment.baseUrl}poll`, pollPayload).subscribe((data: any) => {
         console.log('Poll created:', data);
         this.toast.success('Poll created successfully!');
         this.router.navigate(['/list-items'], { queryParams: { category: this.category } });
