@@ -4,6 +4,11 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'auth/login',  // Default route on empty path
+    pathMatch: 'full'
+  },
+  {
   path: 'auth',
   loadChildren: () =>
     import('./pages/auth/auth.module').then(m => m.AuthModule)
@@ -26,6 +31,10 @@ const routes: Routes = [
     path: 'list-items',
     loadChildren: () => import('./pages/list-items/list-items.module').then(m => m.ListItemsModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',  // Wildcard route for unknown paths
+    redirectTo: 'auth/login'  // Or your 404 page route
   }
 ];
 @NgModule({

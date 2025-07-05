@@ -29,7 +29,7 @@ export class LoginComponent {
           this.router.navigate(['/poll', slug]);
           localStorage.removeItem('slug');
         }else{
-           this.router.navigate(['/']);
+           this.router.navigate(['dashboard']);
         }
         this.loaderService.hide();
       },
