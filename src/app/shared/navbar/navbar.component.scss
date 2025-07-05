@@ -1,0 +1,30 @@
+.navbar {
+  z-index: 1030;
+}
+
+.navbar-brand img {
+  border-radius: 6px;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #333;
+
+  &.active,
+  &:hover {
+    color: #0d6efd;
+  }
+}
+
+.svg-wrapper {
+  svg {
+    max-width: 50px;
+    opacity: 0.9;
+    height: auto;
+    width: auto;
+    max-height: 40px;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}

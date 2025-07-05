@@ -1,6 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}/* You can add global styles to this file, and also import other style files */
 @import './variables.scss';
 
 .bgd-primary{
     background-color: var(--primary-color) !important;
+}
+
+.svg-wrapper {
+  svg {
+    max-width: 50px;
+    opacity: 0.9;
+    height: auto;
+    width: auto;
+    max-height: 40px;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.toast-success {
+  background-color: #4caf50;
+  color: white;
+}
+.toast-error {
+  background-color: #f44336;
+  color: white;
+}
+
+// Optional: smoother slide animation
+#toast-container.toast-bottom-center > div {
+  animation: slideInUp 0.5s ease-in-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-bottom-center{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.ngx-toastr{
+      border-radius: 10px;
+    padding: 10px;
+}
+
+.item-center{
+      position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

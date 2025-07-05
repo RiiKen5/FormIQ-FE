@@ -1,0 +1,16 @@
+<!-- Title (optional) -->
+<h2 *ngIf="data?.title" class="modal-title">
+  {{ data.title }}
+</h2>
+
+<!-- Body -->
+<div class="modal-body">
+  <ng-container *ngIf="data?.bodyTemplate">
+    <ng-container *ngTemplateOutlet="data.bodyTemplate; context: data.context"></ng-container>
+  </ng-container>
+</div>
+
+<!-- Footer -->
+<div class="modal-footer">
+  <button mat-button (click)="close()">Cancel</button>
+</div>

@@ -1,0 +1,29 @@
+<div class="container py-4" *ngIf="poll && !poll?.hasVoted">
+  <h2 class="mb-3">{{ poll?.title }}</h2>
+
+  <div class="list-group mb-4">
+    <label
+      *ngFor="let option of poll.options[0]?.options; let i = index"
+      class="list-group-item"
+    >
+      <input
+        type="radio"
+        name="vote"
+        [value]="option"
+        [(ngModel)]="selectedIndex"
+        class="form-check-input me-2"
+      />
+      {{ option }}
+    </label>
+  </div>
+
+  <button class="btn btn-success" (click)="submitVote(poll)">Submit Vote</button>
+</div>
+
+<div class="item-center" *ngIf="poll && poll?.hasVoted">
+  Vote Submitted Successfully! Thank you for participating.
+</div>
+
+<div class="item-center" *ngIf="!poll" class="text-danger text-center py-5">
+  Poll not found.
+</div>
