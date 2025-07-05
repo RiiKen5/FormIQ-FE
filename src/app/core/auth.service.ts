@@ -7,7 +7,7 @@ import { environment } from '../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private API_URL = `${environment.baseUrl}auth`;
+  private API_URL = `https://formiq-be.onrender.com/api/auth`;
   private userSubject = new BehaviorSubject<string | null>(null);
   public user$ = this.userSubject.asObservable();
 
@@ -18,6 +18,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
+    console.log(this.API_URL);
     return this.http.post(`${this.API_URL}/login`, { email, password });
   }
 
@@ -39,7 +40,7 @@ getUserId(): string {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['auth/login']);
   }
 
   setSession(token: string, user: string) {

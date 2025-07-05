@@ -35,7 +35,7 @@ export class PollViewComponent implements OnInit {
       error: (err) => {
         console.error('Error fetching poll:', err);
         localStorage.setItem('slug', slug || '');
-        this.router.navigate(['/login']);
+        this.router.navigate(['auth/login']);
       }
     });
   }
