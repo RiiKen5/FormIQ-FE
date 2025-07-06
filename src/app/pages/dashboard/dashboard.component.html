@@ -17,18 +17,25 @@
   <!-- Recents Section -->
   <span class="section-title mb-3 d-block">Recents:</span>
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3 mb-5">
-  <div class="col" *ngFor="let item of recents">
+<div class="col" *ngFor="let item of recents" [style.pointer-events]="item.type !== 'polls' ? 'none' : 'auto'">
   <a
     [routerLink]="['/list-items']"
     [queryParams]="{ category: item.type }"
     class="text-decoration-none"
   >
-    <div class="card recent-card h-100 text-center">
+    <div
+      class="card recent-card h-100 text-center"
+      [class.locked]="item.type !== 'polls'"
+    >
+      <!-- Lock icon overlay -->
+      <i *ngIf="item.type !== 'polls'" class="bi bi-lock-fill lock-icon"></i>
+
       <i [class]="item.icon + ' icon mb-2'"></i>
       <span class="card-label">{{ item.label }}</span>
     </div>
   </a>
 </div>
+
 
   </div>
 
