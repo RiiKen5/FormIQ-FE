@@ -2,12 +2,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/auth.service';
+import { fadeInAnimation } from '../../../animations';
 
 @Component({
   selector: 'app-register',
   standalone: false,
   templateUrl: 'register.component.html',
-  styleUrls: ['register.component.scss']
+  styleUrls: ['register.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class RegisterComponent {
   name = '';

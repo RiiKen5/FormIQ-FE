@@ -1,4 +1,4 @@
-<div class="list-view container py-4" (scroll)="onScroll($event)" #scrollContainer
+<div class="list-view container py-4" [@fadeIn] (scroll)="onScroll($event)" #scrollContainer
   style="max-height: 80vh; overflow-y: auto;">
   <button class="btn btn-sm btn-outline-secondary mb-3" (click)="goBack()">
     <i class="bi bi-arrow-left"></i> Back

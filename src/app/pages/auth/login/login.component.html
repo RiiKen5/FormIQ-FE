@@ -1,24 +1,38 @@
-<!-- src/app/pages/auth/login/login.component.html -->
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h3 class="mb-4">Login</h3>
+<div class="auth-container" [@fadeIn]>
+  <!-- Left Panel -->
+  <div class="auth-left">
+    <h1>FormIQ</h1>
+    <p>One platform. Every response that matters.</p>
+    <svg width="200" height="200" viewBox="0 0 1024 1024" fill="none">
+      <circle cx="512" cy="512" r="400" stroke="white" stroke-width="40" opacity="0.2"/>
+      <path d="M300 520h120v-80H300v80zm0 160h120v-80H300v80zm160-240h260v-80H460v80zm0 160h260v-80H460v80zm0 160h260v-80H460v80z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="auth-right">
+    <div class="auth-form">
+      <h2>Login</h2>
 
       <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
       <form (ngSubmit)="onLogin()">
         <div class="form-group mb-3">
           <label>Email</label>
-          <input [(ngModel)]="email" name="email" type="email" class="form-control" required>
+          <input [(ngModel)]="email" name="email" type="email" class="form-control" required />
         </div>
 
         <div class="form-group mb-3">
           <label>Password</label>
-          <input [(ngModel)]="password" name="password" type="password" class="form-control" required>
+          <input [(ngModel)]="password" name="password" type="password" class="form-control" required />
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="btn btn-primary bgd-primary w-100">Login</button>
       </form>
+
+      <p class="mt-3 text-center">
+        Don't have an account? <a routerLink="/auth/register">Register</a>
+      </p>
     </div>
   </div>
 </div>

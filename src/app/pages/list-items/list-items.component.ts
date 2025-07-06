@@ -13,6 +13,7 @@ import { environment } from '../../../environment/environment';
 import { LoaderService } from '../../shared/loader.service';
 import moment from 'moment';
 import { Subject, takeUntil } from 'rxjs';
+import { fadeInAnimation } from '../../animations';
 
 export interface PollOption {
   _id: string;
@@ -37,7 +38,8 @@ export interface Poll {
   selector: 'app-list-items',
   standalone: false,
   templateUrl: './list-items.component.html',
-  styleUrl: './list-items.component.scss'
+  styleUrl: './list-items.component.scss',
+  animations: [fadeInAnimation]
 })
 export class ListItemsComponent {
   category: string = '';

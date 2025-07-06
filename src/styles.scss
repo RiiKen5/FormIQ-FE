@@ -33,7 +33,10 @@ html {
   }
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body, input, button, select, textarea {
+  font-family: 'Poppins', sans-serif !important;
+}
+
 
 .toast-success {
   background-color: #4caf50;
@@ -77,3 +80,56 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.auth-left {
+  flex: 1;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-color) 70%, #4f46e5 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  svg {
+    max-width: 80%;
+  }
+}
+
+.auth-right {
+  flex: 1;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 400px;
+}
+
