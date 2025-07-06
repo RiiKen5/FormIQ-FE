@@ -65,7 +65,7 @@
   
         <div class="fw-bold fs-6 mb-1">{{ item.title }}</div>
         <div class="text-muted small mb-1">Responses: {{ item?.responseCount }}</div>
-        <div class="text-muted small">Date: {{ item?.updatedAt }}</div>
+        <div class="text-muted small">Date: {{ formatSmartDate(item?.updatedAt) }}</div>
       </div>
     </div>
     <app-no-data *ngIf="filteredItems.length === 0" message="No forms available yet!"></app-no-data>

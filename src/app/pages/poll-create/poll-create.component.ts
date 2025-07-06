@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environment/environment';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-poll-create',
@@ -17,6 +18,8 @@ export class PollCreateComponent implements OnInit {
   category: string;
   mode: 'create' | 'edit' = 'create';
   pollId?: string;
+  voted: any;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private http: HttpClient,
@@ -37,11 +40,17 @@ export class PollCreateComponent implements OnInit {
       this.pollId = poll._id;
       this.pollTitle = poll.title;
       this.pollOptions = poll.options[0]?.options || ['', ''];
+      this.voted = poll.voted;
     }
   }
 
   goBack() {
-    this.dialogRef.close(); // if opened as modal
+    if(this.dialogRef){
+this.dialogRef.close();
+    } // if opened as modal
+    else{
+      window.history.back();
+    }
   }
 
   onOptionChange(index: number) {
@@ -68,14 +77,14 @@ export class PollCreateComponent implements OnInit {
 
     if (this.mode === 'edit' && this.pollId) {
       // Update API call
-      this.http.put(`${environment.baseUrl}poll/${this.pollId}`, pollPayload).subscribe((data: any) => {
+      this.http.put(`${environment.baseUrl}poll/${this.pollId}`, pollPayload).pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
         console.log('Poll updated:', data);
         this.toast.success('Poll updated successfully!');
         this.dialogRef.close(data);
       });
     } else {
       // Create new poll
-      this.http.post(`${environment.baseUrl}poll`, pollPayload).subscribe((data: any) => {
+      this.http.post(`${environment.baseUrl}poll`, pollPayload).pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
         console.log('Poll created:', data);
         this.toast.success('Poll created successfully!');
         this.router.navigate(['/list-items'], { queryParams: { category: this.category } });
@@ -85,5 +94,10 @@ export class PollCreateComponent implements OnInit {
 
   trackByIndex(index: number): number {
     return index;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

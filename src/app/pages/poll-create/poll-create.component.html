@@ -72,15 +72,19 @@
   <!-- Options (dynamic) -->
   <div class="mb-4">
     <label class="form-label fw-semibold">Options</label>
-    <div *ngFor="let option of pollOptions; let i = index; trackBy: trackByIndex" class="mb-2">
-      <input
-        type="text"
-        class="form-control"
-        [(ngModel)]="pollOptions[i]"
-        (input)="onOptionChange(i)"
-        placeholder="Option {{ i + 1 }}"
-      />
-    </div>
+    <div *ngFor="let option of pollOptions; let i = index; trackBy: trackByIndex" class="mb-2 d-flex align-items-center">
+  <input
+    type="text"
+    class="form-control me-2"
+    [(ngModel)]="pollOptions[i]"
+    (input)="onOptionChange(i)"
+    placeholder="Option {{ i + 1 }}"
+  />
+  <span *ngIf="voted && voted?.length" class="badge bg-secondary">
+    {{ voted[i]?.votes }} votes
+  </span>
+</div>
+
   </div>
 
   <div class="text-end">
